@@ -1,0 +1,4 @@
+#ifndef DICTIONARIES_H
+#define DICTIONARIES_H
+
+#endif // DICTIONARIES_H
