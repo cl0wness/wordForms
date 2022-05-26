@@ -11,4 +11,15 @@
 */
 void separByWords(QString str, QList<QString> &words);
 
+/*!
+ *  \brief Сравнить списки строк.
+ *
+ *  Функция сравнивает два списка по строчно.
+ *  param[in] list1 - первый список строк
+ *  param[in] list2 - второй список строк
+ *  return список номеров различных пар
+*/
+QList<int> cmpLists(QList<QString> &list1,QList<QString> &list2);
+
+
 #endif // FUNCTIONS_H

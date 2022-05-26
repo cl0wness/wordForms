@@ -28,3 +28,16 @@ void separByWords(QString str, QList<QString> &words)
         str.remove(0, wordLenght+1);
     }
 }
+
+QList<int> cmpLists(QList<QString> &list1,QList<QString> &list2)
+{
+    QList<int> difPairs;
+    //Для каждой пары слов в списках
+    for(int i = 0; i<list1.count(); i++)
+    {
+        //Записать номер пары, если слова различны
+        if(list1[i]!=list2[i])
+             difPairs << i;
+    }
+    return difPairs;
+}
