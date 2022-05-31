@@ -63,3 +63,25 @@ int getEndDifference(QString &first, QString &second)
     }
     return delLetters;
 }
+
+int cmpWithList(QString str, QList <QString> list)
+{
+    int hit;                            // попадание в список
+    // Для каждого слова из списка
+    for(int i = 0; i<list.count(); i++)
+    {
+        // Если позиция списка имеет равноправные значения
+        if(list[i].contains('/'))
+            // Сравнить исходную строку с обоими значениями
+            hit = (str.compare(list[i].left(list[i].indexOf('/'))))*
+                  (str.compare(list[i].right(list[i].length() - list[i].indexOf('/')-1)));
+        // Иначе
+        else
+            // Сравнить исходную строку с позицией в списке
+            hit = str.compare(list[i]);
+        // Вернуть позицию в списке, если есть попадание
+        if(hit == 0)
+            return i;
+    }
+    return -1;
+}

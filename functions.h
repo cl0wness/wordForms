@@ -42,5 +42,15 @@ QList<int> cmpLists(QList<QString> &list1,QList<QString> &list2);
 */
 int getEndDifference(QString &first, QString &second);
 
+/*!
+ *  \brief Сравнить строку со списком
+ *
+ *  Функция находит совпадение строки с одной из строк списка.
+ *  \param[in] str исходная строка
+ *  \param[in] list список
+ *  \return линия списка, на которой случилось совпадение со строкой. -1, если совпадения нет.
+*/
+int cmpWithList(QString str, QList <QString> list);
+
 
 #endif // FUNCTIONS_H
