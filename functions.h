@@ -130,4 +130,14 @@ void rearrangeNegatives(QString &str);
 */
 QStringList loadFile (QString filePath);
 
+/*!
+ *  \brief Сохранить данные в файл
+ *
+ *  Функция загружает текстовые данные в файл.
+ *  \param[in] filePath путь до файла
+ *  \param[in] text текст для сохранения
+ *  \throw 1 в случае проблем при работе с выходным файлом
+*/
+void saveToFile(QString filePath, QStringList text);
+
 #endif // FUNCTIONS_H

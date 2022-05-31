@@ -322,3 +322,32 @@ QStringList loadFile (QString filePath)
         throw 0;
     return list;
 }
+
+void saveToFile(QString filePath, QStringList text)
+{
+    // Если задан путь
+    if(!filePath.isEmpty())
+    {
+        QFile file(filePath);
+        // Открыть файл только для записи
+        if(file.open(QIODevice::WriteOnly))
+        {
+            // Создаем выходной поток
+            QTextStream out(&file);
+            QStringList::const_iterator iterator;
+            // Для каждой строки сохраняемого текста
+            for(iterator = text.constBegin(); iterator<text.constEnd(); iterator++)
+            {
+                // Сохранить строку
+                out << *iterator;
+            }
+            //Закрыть файл
+            file.close();
+        }
+        else
+            throw 1;
+    }
+    else
+        throw 1;
+}
+
