@@ -113,3 +113,46 @@ bool cmpWithDicts(QString str, const QList <QList <QStringList>> dictionaries, i
     else
         return false;
 }
+
+void removeUnfitFormer(QString &wrong, QList <QString> dictLine)
+{
+    if(wrong.right(4) == "self")                     // Если слово является возвратным местоимением
+        wrong.remove(wrong.length()-4, 4);                 // Убрать возратный суффикс
+    else if(wrong.right(6) == "selves")
+            wrong.remove(wrong.length()-6, 6);
+    // Если нового слова нет в словарной строке
+    if(cmpWithList(wrong, dictLine) == -1)
+    {
+        // Если слово является 4-ой формой глагола
+        if(wrong.right(3) == "ing")
+        {
+            // Удалить формообразователь
+            wrong.remove(wrong.length()-3, 3);
+            if(dictLine[0].right(1) == "e")
+                wrong.append("e");
+        }
+        // Иначе если слово - наречие или превосходная степени прилагательного
+        else if(wrong.right(2) == "ly" || wrong.right(2) == "st")
+            // Удалить формообразователь
+            wrong.remove(wrong.length()-2, 2);
+        // Иначе если у слова есть окончание-суффикс
+        else if(wrong.right(1) == "s" || wrong.right(1) == "r" || wrong.right(1) == "d")
+            // Удалить окончание-суффикс
+            wrong.remove(wrong.length()-1, 1);
+
+        // Если данной формы нет в словарной строке
+        if(cmpWithList(wrong, dictLine) == -1)
+        {
+            // Удалить доп. окончание-суффикс, если оно есть
+            if(wrong.right(1) == "e")
+                wrong.remove(wrong.length()-1, 1);
+            // Если данной формы всё ещё нет в словарной строке
+            if(cmpWithList(wrong, dictLine) == -1)
+            {
+                // Изменить преобразованное окончание-суффикс, если оно есть
+                if(wrong.right(1) == "i")
+                    wrong.replace(wrong.length()-1, 1, 'y');
+            }
+        }
+    }
+}

@@ -63,5 +63,14 @@ int cmpWithList(QString str, QList <QString> list);
 */
 bool cmpWithDicts(QString str, const QList <QList <QStringList>> dictionaries, int dictPos[2]);
 
+/*!
+ *  \brief Убрать формообразователь слова для соотвествия словарю
+ *
+ *  Функция отрезает от слова возможные формообразователи, чтобы слово могло соответствовать словарной строке.
+ *  \param[in|out] wrong слово для преобразования
+ *  \param[in] dictLine словарная строка
+*/
+void removeUnfitFormer(QString &wrong, QList <QString> dictLine);
+
 
 #endif // FUNCTIONS_H
