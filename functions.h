@@ -120,4 +120,14 @@ QString formulateMistake(Mistake mistake);
 */
 void rearrangeNegatives(QString &str);
 
+/*!
+ *  \brief Загрузить данные из файла
+ *
+ *  Функция выгружает текстовые данные из файла.
+ *  \param[in] filePath путь до файла
+ *  \return список строк из файла
+ *  \throw 0 в случае проблем при работе с входным файлом
+*/
+QStringList loadFile (QString filePath);
+
 #endif // FUNCTIONS_H

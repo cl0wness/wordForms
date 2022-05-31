@@ -1,4 +1,6 @@
 #include <QCoreApplication>
+#include <QFile>
+#include <QTextStream>
 #include "functions.h"
 #include "dictionaries.h"
 
@@ -290,4 +292,33 @@ void rearrangeNegatives(QString &str)
             // Считать, что отрицания нет
             haveNeg = false;
     }
+}
+
+QStringList loadFile (QString filePath)
+{
+    QStringList list;
+    if (!filePath.isEmpty()) // если имя файла задано
+    {
+         QFile file(filePath);
+         // Открыть файл только для чтения
+         if (file.open(QIODevice::ReadOnly) )
+         {
+            // Создать поток для данных
+            QTextStream input( &file );
+            QString data;
+            // Получать данные из потока, пока они есть
+            while (!input.atEnd())
+            {
+                data = input.readLine();
+                list << data;
+            }
+            // Закрыть файл
+            file.close();
+         }
+         else
+             throw 0;
+    }
+    else
+        throw 0;
+    return list;
 }
