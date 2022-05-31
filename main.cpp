@@ -41,3 +41,25 @@ QList<int> cmpLists(QList<QString> &list1,QList<QString> &list2)
     }
     return difPairs;
 }
+
+int getEndDifference(QString &first, QString &second)
+{
+    int delLetters = 0;
+    //..Считать слова одинаковыми
+    bool equal = true;
+    // Пока слова одинаковые и в них остались символы
+    while(equal && first.length()>0 && second.length()>0)
+    {
+        // Удалить текущие символы, если они равны
+        if(first[0] == second[0])
+        {
+            first.remove(0,1);
+            second.remove(0,1);
+            delLetters++;
+        }
+        // Иначе считать слова неодинаковыми
+        else
+            equal = false;
+    }
+    return delLetters;
+}
