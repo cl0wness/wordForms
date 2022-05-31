@@ -103,5 +103,14 @@ Mistake identifyUsualMistake(QString correct, QString wrong);
 */
 Mistake identifyMistake(QString correct, QString wrong);
 
+/*!
+ *  \brief Сформулировать ошибку
+ *
+ *  Функция формирует читаемую строку с объяснением ошибки по её характеру.
+ *  \param[in] mistake ошибка
+ *  \return строка с формулировкой
+*/
+QString formulateMistake(Mistake mistake);
+
 
 #endif // FUNCTIONS_H

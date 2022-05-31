@@ -247,3 +247,21 @@ Mistake identifyMistake(QString correct, QString wrong)
         return identifyUsualMistake(correct, wrong);
     }
 }
+
+QString formulateMistake(Mistake mistake)
+{
+    QString formMistake;
+    if(mistake == WRONG_FORM)
+        formMistake = "неправильно выбранная форма слова";
+    else if(mistake == WRONG_WORD)
+        formMistake = "слово отличается от эталона";
+    else if(mistake == WRONG_CREATE)
+        formMistake = "неправильно создана форма слова";
+    else if(mistake == WRONG_EXCEPTION)
+        formMistake = "неправильно создана форма-исключение";
+    else if(mistake == WRONG_FORMER)
+        formMistake = "неправильно выбранный формообразователь";
+    else if(mistake == NO_MISTAKE)
+        formMistake = "форма, как и эталон, является правильной";
+    return formMistake;
+}
