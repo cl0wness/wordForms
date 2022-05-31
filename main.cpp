@@ -6,9 +6,97 @@
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication a(argc, argv);
+    QCoreApplication comLine(argc, argv); // аргументы командной строки
+    QString input, output; // входной и выходной файл
+    QStringList strings, explainsMistake; // предложения и объяснения ошибок
+    QList <Mistake> mistakesIn; // позиции ошибок
 
-    return a.exec();
+    bool haveMistake = false; // наличие ошибок
+    try
+    {
+        // Получить пути к входному и выходному файлам, если задано достаточно аргементов
+        if(comLine.arguments().size()>2)
+        {
+            input = comLine.arguments().at(1);
+            output = comLine.arguments().at(2);
+        }
+        // Иначе - исключение 0
+        else
+            throw 0;
+        // Загрузить данные из входного файла
+        strings = loadFile(input);
+        // Исключение 4, если строка одна, но в ней два предложения
+        if (strings.count() == 1 && strings[0].contains(QRegExp("[.?!].+[.?!]")))
+        {
+            throw 4;
+        }
+        // Иначе, если строк меньше 2, исключение 2
+        else if (strings.count() < 2)
+            throw 2;
+        // Иначе, если строк больше 2, исключение 2
+        else if (strings.count() > 2)
+            throw 3;
+        // Перестроить отрицания в предложениях
+        rearrangeNegatives(strings[0]);
+        rearrangeNegatives(strings[1]);
+        // Разделить предложения на слова
+        QList<QString> str1, str2;
+        separByWords(strings[0],str1);
+        separByWords(strings[1],str2);
+        // Исключение 5, если в предложениях разной количество слов
+        if(str1.count() != str2.count())
+            throw 5;
+        // Сравнить слова попарно
+        QList<int> diffPairs = cmpLists(str1,str2);
+        haveMistake = !diffPairs.isEmpty();
+        // Если есть несовпадения в парах
+        if(haveMistake)
+        {
+            // Для каждой несовпадающей пары
+            for(int i = 0; i<diffPairs.count(); i++)
+            {
+                // Идентифицировать ошибку
+                mistakesIn[i] = identifyMistake(str1[diffPairs[i]], str2[diffPairs[i]]);
+                // Сформировать строку-объяснение
+                explainsMistake[i] = str2[diffPairs[i]];
+                explainsMistake[i].append(" - ").append(formulateMistake(mistakesIn[i])).append(" - ").append(str2[diffPairs[i]]).append("\n");
+            }
+        }
+        // Иначе - ошибок не найдено
+        else {
+            explainsMistake[0] = "ошибок не найдено";
+        }
+        // Сохранить результаты в выходной файл
+        saveToFile(output, explainsMistake);
+    }
+    catch (int error)
+    {
+        QStringList exception;
+        // Обработать исключения
+        switch (error)
+        {
+            case 0: exception[0] = "Неверно указан файл с входными данными. Возможно, файл не существует или нет прав к доступу.";
+                    break;
+            case 1: exception[0] = "Неверно указан файл для выходных данных. Возможно, указанного расположения не существует или нет прав на запись.";
+                    break;
+            case 2: exception[0] = "В указанном файле недостаточно данных. Введите два предложения на отдельных строках";
+                    break;
+            case 3: exception[0] = "В указанном файле содержатся лишние данные. Введите два предложения на отдельных строках";
+                    break;
+            case 4: exception[0] = "В указанном файле недостаточно данных. Возможно предложения записаны на одной строке.";
+                    break;
+            case 5: exception[0] = "Предложения в указанном файле различны по составу. Проверьте входные данные.";
+        }
+        try {
+            // Сохранить исключения в выходной файл
+            saveToFile(output, exception);
+        } catch (int error) {
+            // Напечатать предупреждение, если нет доступа к выходному файлу
+            if(error == 1)
+                qWarning("Неверно указан файл для выходных данных. Возможно, указанного расположения не существует или нет прав на запись.");
+        }
+    }
+    return comLine.exec();
 }
 
 void separByWords(QString str, QList<QString> &words)
