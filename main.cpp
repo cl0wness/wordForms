@@ -1,5 +1,6 @@
 #include <QCoreApplication>
 #include "functions.h"
+#include "dictionaries.h"
 
 int main(int argc, char *argv[])
 {
@@ -187,6 +188,36 @@ Mistake identifyDictMistake(QString wrong, QList <QString> dictLine, const QStri
             return WRONG_EXCEPTION;
     }
     // Иначе считать, что ошибка в выборе слова (слово другое)
+    else
+        return WRONG_WORD;
+}
+
+Mistake identifyUsualMistake(QString correct, QString wrong)
+{
+    // Обрезаем слова до первого расхождения
+    QString fullCorrect = correct;
+    int delLetters = getEndDifference(correct, wrong);
+    // Считать, что ошибка в создании формы, если последняя общая буква в правильном слове удвоена
+    if(fullCorrect[delLetters-1] == correct[0])
+        return WRONG_CREATE;
+
+    // Считать, что ошибка в выборе слова (слово другое), если остаток правильного длиннее максимально возможного формообразователя
+    if(correct.length()>4)
+        return WRONG_WORD;
+
+    // Если остаток правильного соответствует возможным окончаниям формы
+    if(cmpWithList(correct, endings)!= -1 || correct == "y" || correct.isEmpty())
+    {
+       // Если остаток неправильного возможным окончаниям формы
+       if(cmpWithList(wrong, endings)!= -1 || wrong == "y")
+           // Считать, что ошибка в выборе формообразователя
+           return WRONG_FORMER;
+       // Иначе
+       else
+           // Считать, что ошибка в создании формы
+           return WRONG_CREATE;
+    }
+    // Иначе ошибка в выборе слова (слово другое)
     else
         return WRONG_WORD;
 }

@@ -83,5 +83,15 @@ void removeUnfitFormer(QString &wrong, QList <QString> dictLine);
 */
 Mistake identifyDictMistake(QString wrong, QList <QString> dictLine, const QString correct);
 
+/*!
+ *  \brief Идентифицировать обычную (несловарную) ошибку
+ *
+ *  Функция определяет характер обычной ошибки. Обычная ошибка - ошибка при создании формы по обычному правилу.
+ *  \param[in] correct правильное слово
+ *  \param[in] wrong слово с ошибкой
+ *  \return ошибка
+*/
+Mistake identifyUsualMistake(QString correct, QString wrong);
+
 
 #endif // FUNCTIONS_H
