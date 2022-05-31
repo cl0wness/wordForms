@@ -16,7 +16,7 @@ void separByWords(QString str, QList<QString> &words)
     {
         QString word;
         //Найти место разделяющего знака (знака препинания или пробела)
-        wordLenght = str.indexOf(QRegExp("[ ,-;.!?\'\"]"));
+        wordLenght = str.indexOf(QRegExp("[ ,-;.!?\"]"));
         //Скопировать слово до этого знака
         word = str.left(wordLenght);
         //Перевести слово в нижний регистр
