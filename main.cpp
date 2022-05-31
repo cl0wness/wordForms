@@ -265,3 +265,29 @@ QString formulateMistake(Mistake mistake)
         formMistake = "форма, как и эталон, является правильной";
     return formMistake;
 }
+
+void rearrangeNegatives(QString &str)
+{
+    //..Считать, что отрицание есть
+    bool haveNeg = true;
+    // Пока отрицание есть
+    while(haveNeg)
+    {
+        // Если строка содержит can't
+        if(str.contains("can\'t"))
+            // Заменить на can not
+            str.replace(str.indexOf("can\'t"), 5, "can not");
+        // Иначе если строка содержит won't
+        else if(str.contains("won\'t"))
+            // Заменить на will not
+            str.replace(str.indexOf("won\'t"), 5, "will not");
+        // Иначе если строка содержит обычное сокращение
+        else if(str.contains("n\'t"))
+            // Заменить на not
+            str.replace(str.indexOf("n\'t"), 3, " not");
+        // Иначе
+        else
+            // Считать, что отрицания нет
+            haveNeg = false;
+    }
+}

@@ -112,5 +112,12 @@ Mistake identifyMistake(QString correct, QString wrong);
 */
 QString formulateMistake(Mistake mistake);
 
+/*!
+ *  \brief Перестроить сокращенное отрицание
+ *
+ *  Функция перестраивает все сокращенные отрицания строке. (глагол)n't -> (глагол) not.
+ *  \param[in|out] str строка
+*/
+void rearrangeNegatives(QString &str);
 
 #endif // FUNCTIONS_H
