@@ -52,5 +52,16 @@ int getEndDifference(QString &first, QString &second);
 */
 int cmpWithList(QString str, QList <QString> list);
 
+/*!
+ *  \brief Сравнить строку с набором словарей
+ *
+ *  Функция находит совпадение строки с набором из нескольких словарей.
+ *  \param[in] str исходная строка
+ *  \param[in] dictionaries набор словарей
+ *  \param[out] dictPos найденное совпадение {номер словаря, номер строки в словаре}
+ *  \return успешность сравнения
+*/
+bool cmpWithDicts(QString str, const QList <QList <QStringList>> dictionaries, int dictPos[2]);
+
 
 #endif // FUNCTIONS_H

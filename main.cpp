@@ -85,3 +85,31 @@ int cmpWithList(QString str, QList <QString> list)
     }
     return -1;
 }
+
+bool cmpWithDicts(QString str, const QList <QList <QStringList>> dictionaries, int dictPos[2])
+{
+    int line = -1;                                      // строка словаря
+    int dict = 0;                                       // номер словаря
+    int hit = -1;                                       // попадание
+    // Для каждого словаря и пока не найдено совпадение со строкой
+    for(dict = 0; dict<dictionaries.count() && (hit == -1); dict++)
+    {
+        // Для каждой строки в словаре и пока не найдено совпадение
+        for (line = 0; line < dictionaries[dict].count() && (hit == -1); line++)
+        {
+            // Сравнить строку со строкой словаря
+            hit = cmpWithList(str,dictionaries[dict][line]);
+        }
+    }
+    // Если совпадение найдено
+    if(hit != -1)
+    {
+        // Считать сравнение успешным
+        dictPos[0] = dict-1;
+        dictPos[1] = line-1;
+        return true;
+    }
+    // Иначе считать сравнение неуспешным
+    else
+        return false;
+}
