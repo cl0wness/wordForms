@@ -72,5 +72,16 @@ bool cmpWithDicts(QString str, const QList <QList <QStringList>> dictionaries, i
 */
 void removeUnfitFormer(QString &wrong, QList <QString> dictLine);
 
+/*!
+ *  \brief Идентифицировать словарную ошибку
+ *
+ *  Функция определяет характер словарной ошибки.
+ *  \param[in] wrong слово с ошибкой
+ *  \param[in] dictLine словарная строка, где есть правильное слово
+ *  \param[in] correct правильное слово
+ *  \return ошибка
+*/
+Mistake identifyDictMistake(QString wrong, QList <QString> dictLine, const QString correct);
+
 
 #endif // FUNCTIONS_H

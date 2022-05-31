@@ -1,4 +1,5 @@
 #include <QCoreApplication>
+#include "functions.h"
 
 int main(int argc, char *argv[])
 {
@@ -155,4 +156,37 @@ void removeUnfitFormer(QString &wrong, QList <QString> dictLine)
             }
         }
     }
+}
+
+Mistake identifyDictMistake(QString wrong, QList <QString> dictLine, const QString correct)
+{
+    // Если неправильное слово есть в словарной строке
+    if(cmpWithList(wrong, dictLine) != -1)
+    {
+        // Считать, что ошибки нет, если слова равноправны
+        if(cmpWithList(wrong, dictLine) == cmpWithList(correct, dictLine))
+            return NO_MISTAKE;
+        // Иначе считать, что ошибка в выборе формы слова
+        else
+            return WRONG_FORM;
+    }
+    // Иначе
+    else
+        // Убрать мешающий совпадению формообразователь
+        removeUnfitFormer(wrong, dictLine);
+
+    QString fullWrong = wrong;                                  // копия неправильного слова
+    // Если неправильное слово теперь есть в словарной строке
+    if(cmpWithList(wrong, dictLine)!= -1)
+    {
+        // Считать, что ошибка в выборе формы, если неправильное 4-ая форма глагола
+        if(fullWrong.right(3) == "ing")
+            return WRONG_FORM;
+        // Иначе считать, что ошибка в создании формы-исключения
+        else
+            return WRONG_EXCEPTION;
+    }
+    // Иначе считать, что ошибка в выборе слова (слово другое)
+    else
+        return WRONG_WORD;
 }
