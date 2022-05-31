@@ -93,5 +93,15 @@ Mistake identifyDictMistake(QString wrong, QList <QString> dictLine, const QStri
 */
 Mistake identifyUsualMistake(QString correct, QString wrong);
 
+/*!
+ *  \brief Идентифицировать ошибку в слове
+ *
+ *  Функция определяет характер ошибки, в соответствии с её типом - словарная или обычная.
+ *  \param[in] correct правильное слово
+ *  \param[in] wrong слово с ошибкой
+ *  \return ошибка
+*/
+Mistake identifyMistake(QString correct, QString wrong);
+
 
 #endif // FUNCTIONS_H

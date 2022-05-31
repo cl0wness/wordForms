@@ -221,3 +221,29 @@ Mistake identifyUsualMistake(QString correct, QString wrong)
     else
         return WRONG_WORD;
 }
+
+Mistake identifyMistake(QString correct, QString wrong)
+{
+    QList <QList <QStringList>> dictionaries ={exeptionNouns,exeptionAdjectives,
+         exeptionAdverbs, irregularVerbs, pronouns}; // набор словарей для проверки
+    int dictPos[2] = {-1,-1};                        // позиция слова в словаре
+    // Если хоть одно из слов пустое
+    if(correct.isEmpty() || wrong.isEmpty())
+    {
+        // Считать,что ошибки нет
+        return NO_MISTAKE;
+    }
+    // Иначе eсли правильное слово есть в словаре
+    else if(cmpWithDicts(correct,dictionaries, dictPos))
+    {
+        // Идентифицировать словарную ошибку
+        QList<QString> dictLine = dictionaries[dictPos[0]][dictPos[1]];
+        return identifyDictMistake(wrong,dictLine,correct);
+    }
+    // Иначе
+    else
+    {
+        // Идентифицировать обычную ошибку
+        return identifyUsualMistake(correct, wrong);
+    }
+}
