@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
                 mistakesIn << identifyMistake(str1[diffPairs[i]], str2[diffPairs[i]]);
                 // Сформировать строку-объяснение
                 QString explain = str2[diffPairs[i]];
-                explain.append(" - ").append(formulateMistake(mistakesIn[i])).append(" - ").append(str2[diffPairs[i]]).append("\n");
+                explain.append(" - ").append(formulateMistake(mistakesIn[i])).append(" - ").append(str1[diffPairs[i]]).append("\n");
                 explainsMistake << explain;
             }
         }
@@ -97,6 +97,7 @@ int main(int argc, char *argv[])
                 qWarning("Неверно указан файл для выходных данных. Возможно, указанного расположения не существует или нет прав на запись.");
         }
     }
+    return 0;
     return comLine.exec();
 }
 
