@@ -296,7 +296,7 @@ Mistake identifyUsualMistake(QString correct, QString wrong)
         return WRONG_WORD;
 
     // Если остаток правильного соответствует возможным окончаниям формы
-    if(cmpWithList(correct, endings)!= -1 || correct == "y" || correct.isEmpty())
+    if(cmpWithList(correct, endings)!= -1 || correct == "y" || (correct.isEmpty() && delLetters > 0))
     {
        // Если остаток неправильного возможным окончаниям формы
        if(cmpWithList(wrong, endings)!= -1 || wrong == "y")
