@@ -314,8 +314,8 @@ Mistake identifyUsualMistake(QString correct, QString wrong)
 
 Mistake identifyMistake(QString correct, QString wrong)
 {
-    QList <QList <QStringList>> dictionaries ={exeptionNouns,exeptionAdjectives,
-         exeptionAdverbs, irregularVerbs, pronouns}; // набор словарей для проверки
+    QList <QList <QStringList>> dictionaries ={exceptionNouns,exceptionAdjectives,
+         exceptionAdverbs, irregularVerbs, pronouns}; // набор словарей для проверки
     int dictPos[2] = {-1,-1};                        // позиция слова в словаре
     // Если хоть одно из слов пустое
     if(correct.isEmpty() || wrong.isEmpty())

@@ -4,7 +4,7 @@
 #include <QStringList>
 
 /// Словарь исключений множественного числа существительных
-const QList <QStringList> exeptionNouns = {QStringList{ "man","men"},QStringList{ "woman","women"}, QStringList{ "foot","feet"},
+const QList <QStringList> exceptionNouns = {QStringList{ "man","men"},QStringList{ "woman","women"}, QStringList{ "foot","feet"},
                                        QStringList{ "tooth","teeth"}, QStringList{ "goose","geese"}, QStringList{ "mouse","mice"},
                                        QStringList{ "datum","data"}, QStringList{ "phenomenon","phenomena"}, QStringList{ "crisis","crises"},
                                        QStringList{ "basis","bases"}, QStringList{ "sheep","sheep"}, QStringList{ "deer","deer"},
@@ -13,12 +13,12 @@ const QList <QStringList> exeptionNouns = {QStringList{ "man","men"},QStringList
                                        QStringList{ "person","people"}, QStringList{ "ox","oxen"}};
 
 /// Словарь исключений степеней сравнения прилагательных
-const QList <QStringList> exeptionAdjectives = {QStringList{ "good","better", "best"},QStringList{ "bad","worse", "worst"},
+const QList <QStringList> exceptionAdjectives = {QStringList{ "good","better", "best"},QStringList{ "bad","worse", "worst"},
                                             QStringList{ "little","less", "least"}, QStringList{ "much/many","more", "most"},
                                             QStringList{ "far","farther/further", "farthest/furthest"}, QStringList{ "old","older/elder", "oldest/eldest"}};
 
 /// Словарь исключений образования наречий
-const QList <QStringList> exeptionAdverbs = {QStringList {"good", "well"} , QStringList{"fast", "fast"}, QStringList{"hard", "hard"},
+const QList <QStringList> exceptionAdverbs = {QStringList {"good", "well"} , QStringList{"fast", "fast"}, QStringList{"hard", "hard"},
                                          QStringList{"late", "late"}, QStringList {"low","low"}, QStringList{"easy", "easy/easily"}};
 
 /// Словарь неправильных глаголов
