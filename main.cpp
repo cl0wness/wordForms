@@ -430,7 +430,9 @@ void saveToFile(QString filePath, QStringList text)
                 {
                     // Сохранить строку
                     out << *iterator;
+                    out << "\n";
                 }
+                out << *iterator;
                 //Закрыть файл
                 file.close();
             }
