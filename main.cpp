@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
         }
         // Иначе - ошибок не найдено
         else {
-            explainsMistake[0] = "ошибок не найдено";
+            explainsMistake[0] = "Ошибок не найдено.";
         }
         // Сохранить результаты в выходной файл
         saveToFile(output, explainsMistake);
@@ -79,11 +79,11 @@ int main(int argc, char *argv[])
                     break;
             case 1: exception[0] = "Неверно указан файл для выходных данных. Возможно, указанного расположения не существует или нет прав на запись.";
                     break;
-            case 2: exception[0] = "В указанном файле недостаточно данных. Введите два предложения на отдельных строках";
+            case 2: exception[0] = "В указанном файле недостаточно данных. Введите два предложения на отдельных строках.";
                     break;
-            case 3: exception[0] = "В указанном файле содержатся лишние данные. Введите два предложения на отдельных строках";
+            case 3: exception[0] = "В указанном файле содержатся лишние данные. Введите два предложения на отдельных строках.";
                     break;
-            case 4: exception[0] = "В указанном файле недостаточно данных. Возможно предложения записаны на одной строке.";
+            case 4: exception[0] = "В указанном файле недостаточно данных. Возможно, предложения записаны на одной строке.";
                     break;
             case 5: exception[0] = "Предложения в указанном файле различны по составу. Проверьте входные данные.";
         }
@@ -251,6 +251,7 @@ void removeUnfitFormer(QString &wrong, QList <QString> dictLine)
 
 Mistake identifyDictMistake(QString wrong, QList <QString> dictLine, const QString correct)
 {
+    QString fullWrong = wrong;                                  // копия неправильного слова
     // Если неправильное слово есть в словарной строке
     if(cmpWithList(wrong, dictLine) != -1)
     {
@@ -266,7 +267,6 @@ Mistake identifyDictMistake(QString wrong, QList <QString> dictLine, const QStri
         // Убрать мешающий совпадению формообразователь
         removeUnfitFormer(wrong, dictLine);
 
-    QString fullWrong = wrong;                                  // копия неправильного слова
     // Если неправильное слово теперь есть в словарной строке
     if(cmpWithList(wrong, dictLine)!= -1)
     {

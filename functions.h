@@ -36,8 +36,8 @@ QList<int> cmpLists(QList<QString> &list1,QList<QString> &list2);
  *  \brief Получить различие концов двух слов
  *
  *  Функция обрезает слова с начала до первого расхождения
- *  \param[in|out] first первое слово
- *  \param[in|out] second второе слово
+ *  \param[in,out] first первое слово
+ *  \param[in,out] second второе слово
  *  \return количество удалённых букв
 */
 int getEndDifference(QString &first, QString &second);
@@ -67,7 +67,7 @@ bool cmpWithDicts(QString str, const QList <QList <QStringList>> dictionaries, i
  *  \brief Убрать формообразователь слова для соотвествия словарю
  *
  *  Функция отрезает от слова возможные формообразователи, чтобы слово могло соответствовать словарной строке.
- *  \param[in|out] wrong слово для преобразования
+ *  \param[in,out] wrong слово для преобразования
  *  \param[in] dictLine словарная строка
 */
 void removeUnfitFormer(QString &wrong, QList <QString> dictLine);
@@ -116,7 +116,7 @@ QString formulateMistake(Mistake mistake);
  *  \brief Перестроить сокращенное отрицание
  *
  *  Функция перестраивает все сокращенные отрицания строке. (глагол)n't -> (глагол) not.
- *  \param[in|out] str строка
+ *  \param[in,out] str строка
 */
 void rearrangeNegatives(QString &str);
 
