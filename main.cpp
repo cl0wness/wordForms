@@ -426,7 +426,7 @@ void saveToFile(QString filePath, QStringList text)
             if(!text.isEmpty())
             {
                 // Для каждой строки сохраняемого текста
-                for(iterator = text.constBegin(); iterator<text.constEnd(); iterator++)
+                for(iterator = text.constBegin(); iterator<text.constEnd()-1; iterator++)
                 {
                     // Сохранить строку
                     out << *iterator;
