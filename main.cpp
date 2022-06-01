@@ -288,7 +288,7 @@ Mistake identifyUsualMistake(QString correct, QString wrong)
     QString fullCorrect = correct;
     int delLetters = getEndDifference(correct, wrong);
     // Считать, что ошибка в создании формы, если последняя общая буква в правильном слове удвоена
-    if(fullCorrect[delLetters-1] == correct[0])
+    if(delLetters > 0 && !correct.isEmpty()&& fullCorrect[delLetters-1] == correct[0])
         return WRONG_CREATE;
 
     // Считать, что ошибка в выборе слова (слово другое), если остаток правильного длиннее максимально возможного формообразователя
