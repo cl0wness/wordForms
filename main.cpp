@@ -423,14 +423,17 @@ void saveToFile(QString filePath, QStringList text)
             // Создаем выходной поток
             QTextStream out(&file);
             QStringList::const_iterator iterator;
-            // Для каждой строки сохраняемого текста
-            for(iterator = text.constBegin(); iterator<text.constEnd(); iterator++)
+            if(!text.isEmpty())
             {
-                // Сохранить строку
-                out << *iterator;
+                // Для каждой строки сохраняемого текста
+                for(iterator = text.constBegin(); iterator<text.constEnd(); iterator++)
+                {
+                    // Сохранить строку
+                    out << *iterator;
+                }
+                //Закрыть файл
+                file.close();
             }
-            //Закрыть файл
-            file.close();
         }
         else
             throw 1;
