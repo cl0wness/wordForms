@@ -56,15 +56,16 @@ int main(int argc, char *argv[])
             for(int i = 0; i<diffPairs.count(); i++)
             {
                 // Идентифицировать ошибку
-                mistakesIn[i] = identifyMistake(str1[diffPairs[i]], str2[diffPairs[i]]);
+                mistakesIn << identifyMistake(str1[diffPairs[i]], str2[diffPairs[i]]);
                 // Сформировать строку-объяснение
-                explainsMistake[i] = str2[diffPairs[i]];
-                explainsMistake[i].append(" - ").append(formulateMistake(mistakesIn[i])).append(" - ").append(str2[diffPairs[i]]).append("\n");
+                QString explain = str2[diffPairs[i]];
+                explain.append(" - ").append(formulateMistake(mistakesIn[i])).append(" - ").append(str2[diffPairs[i]]).append("\n");
+                explainsMistake << explain;
             }
         }
         // Иначе - ошибок не найдено
         else {
-            explainsMistake[0] = "Ошибок не найдено.";
+            explainsMistake << "Ошибок не найдено.";
         }
         // Сохранить результаты в выходной файл
         saveToFile(output, explainsMistake);
@@ -75,17 +76,17 @@ int main(int argc, char *argv[])
         // Обработать исключения
         switch (error)
         {
-            case 0: exception[0] = "Неверно указан файл с входными данными. Возможно, файл не существует или нет прав к доступу.";
+            case 0: exception << "Неверно указан файл с входными данными. Возможно, файл не существует или нет прав к доступу.";
                     break;
-            case 1: exception[0] = "Неверно указан файл для выходных данных. Возможно, указанного расположения не существует или нет прав на запись.";
+            case 1: exception << "Неверно указан файл для выходных данных. Возможно, указанного расположения не существует или нет прав на запись.";
                     break;
-            case 2: exception[0] = "В указанном файле недостаточно данных. Введите два предложения на отдельных строках.";
+            case 2: exception << "В указанном файле недостаточно данных. Введите два предложения на отдельных строках.";
                     break;
-            case 3: exception[0] = "В указанном файле содержатся лишние данные. Введите два предложения на отдельных строках.";
+            case 3: exception << "В указанном файле содержатся лишние данные. Введите два предложения на отдельных строках.";
                     break;
-            case 4: exception[0] = "В указанном файле недостаточно данных. Возможно, предложения записаны на одной строке.";
+            case 4: exception << "В указанном файле недостаточно данных. Возможно, предложения записаны на одной строке.";
                     break;
-            case 5: exception[0] = "Предложения в указанном файле различны по составу. Проверьте входные данные.";
+            case 5: exception << "Предложения в указанном файле различны по составу. Проверьте входные данные.";
         }
         try {
             // Сохранить исключения в выходной файл
